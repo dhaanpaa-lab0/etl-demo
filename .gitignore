@@ -5,7 +5,8 @@ build/
 dist/
 wheels/
 *.egg-info
-
+# DotEnv
+.env
 # Virtual environments
 .venv
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,pycharm+all
