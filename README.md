@@ -134,6 +134,11 @@ See .env.example for a complete template.
 - Permission issues creating folders: The app creates in, out, logs, tmp, dat, ctl under the working directory. Run from a writable location or adjust EtlEnvironment(sys_root).
 - DuckDB file permissions: If using a file-based DuckDB, ensure the directory where the database file will be created is writable.
 
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Code is written mostly by humans with some help with a little bit of AI (Claude Code, and Jetbrains Junie Pro)
+
 ## License
 MIT License. See the LICENSE file for full terms.
 
