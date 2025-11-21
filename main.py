@@ -3,7 +3,8 @@ from json import dumps
 from dotenv import load_dotenv
 
 from etl.cntrl import EtlControl
-from etl.core import EtlEnvironment, EtlDbConfig, EtlDbSource
+from etl.core import EtlEnvironment
+from etl.dba import EtlDbConfig, EtlDbSource
 
 load_dotenv()
 etl_environment = EtlEnvironment()

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a lightweight ETL/ELT demo using Python 3.12+, SQLAlchemy 2.0+, and PostgreSQL. The project demonstrates:
+This is a lightweight ETL/ELT demo using Python 3.12+, SQLAlchemy 2.0+, and multiple database backends (PostgreSQL, MySQL, DuckDB). The project demonstrates:
 - Environment-based database configuration (with support for named environments like "dev", "prod")
 - ETL folder structure management (in, out, logs, tmp, dat, ctl)
 - Database control table patterns
@@ -97,6 +97,19 @@ PG_DEV_PASS=dev_secret
 
 Then use `EtlDbConfig("dev")` to load those variables.
 
+### MySQL Configuration
+For MySQL, set:
+```
+PG_DB=mydb
+PG_USER=myuser
+PG_PASS=secret
+PG_HOST=localhost
+PG_PORT=3306
+PG_TYPE=mysql+pymysql
+```
+
+MySQL uses the standard server-based connection format (USER, PASS, HOST, PORT, DB). The default port for MySQL is 3306.
+
 ### DuckDB Configuration
 For DuckDB (file-based or in-memory), set:
 ```
@@ -124,6 +137,7 @@ DuckDB does not require USER, PASS, HOST, or PORT settings.
 
 - `sqlalchemy>=2.0`: ORM and database toolkit
 - `psycopg>=3`: PostgreSQL driver (note: uses `postgresql+psycopg` dialect)
+- `pymysql>=1.1.0`: MySQL driver (note: uses `mysql+pymysql` dialect)
 - `duckdb>=1.1.3`: DuckDB database engine
 - `duckdb-engine>=0.13.2`: SQLAlchemy dialect for DuckDB
 - `python-dotenv`: Load `.env` files

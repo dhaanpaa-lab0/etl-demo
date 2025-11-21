@@ -11,6 +11,7 @@ dependencies = [
     "duckdb-engine>=0.13.2",
     "pandas>=2.3.3",
     "psycopg>=3.2.12",
+    "pymysql>=1.1.0",
     "python-dotenv>=1.2.1",
     "sqlalchemy>=2.0.44",
 ]
