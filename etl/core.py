@@ -13,6 +13,8 @@ class EtlDbConfig:
     variables based on a specific environment name. It is designed to construct
     connection URIs compatible with SQLAlchemy.
 
+    Supports both server-based databases (PostgreSQL) and file-based databases (DuckDB).
+
     :ivar env_name: The name of the current environment. If not provided, defaults
         to None.
     :type env_name: str or None
@@ -34,7 +36,7 @@ class EtlDbConfig:
         to "5532" if not found.
     :type db_port: str
     :ivar db_type: The database type extracted from the configuration. Defaults
-        to "postgres+psycopg3" if not explicitly specified.
+        to "postgresql+psycopg" if not explicitly specified.
     :type db_type: str
     """
 
@@ -57,7 +59,29 @@ class EtlDbConfig:
         return os.environ.get(f"{self.env_prefix}{var_name.upper()}", default_value)
 
     def get_sqlalchemy_uri(self) -> str:
-        return f"{self.db_type}://{self.db_user}:{self.db_password}@{self.db_host}:{self.db_port}/{self.db_name}"
+        """
+        Constructs the SQLAlchemy connection URI based on database type.
+
+        For DuckDB (duckdb://), uses file path format: duckdb:///path/to/file.db
+        or duckdb:///:memory: for in-memory databases.
+
+        For server-based databases (PostgreSQL, etc.), uses standard format:
+        TYPE://USER:PASS@HOST:PORT/DB
+
+        :return: SQLAlchemy connection URI
+        :rtype: str
+        """
+        if self.db_type.startswith("duckdb"):
+            # DuckDB uses file path or :memory:
+            # db_name can be a file path or ":memory:"
+            if self.db_name == ":memory:":
+                return "duckdb:///:memory:"
+            else:
+                # For file paths, use three slashes for absolute paths
+                return f"duckdb:///{self.db_name}"
+        else:
+            # Server-based database (PostgreSQL, MySQL, etc.)
+            return f"{self.db_type}://{self.db_user}:{self.db_password}@{self.db_host}:{self.db_port}/{self.db_name}"
 
 
 class EtlDbSource:
