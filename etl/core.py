@@ -1,14 +1,5 @@
 import os
-from enum import Enum
-
-
-class SysFolderType(Enum):
-    INBOX = "in"
-    OUTBOX = "out"
-    LOGS = "logs"
-    TEMP = "tmp"
-    DATA = "dat"
-    CONTROL = "ctl"
+from .sys import SysFolderType
 
 
 class EtlEnvironment:
