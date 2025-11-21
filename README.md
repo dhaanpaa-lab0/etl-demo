@@ -1,6 +1,6 @@
-etl-demo
+# Lightweight ETL or ELT demo
 
-Overview
+## Overview
 This repository is a minimal ETL (Extract–Transform–Load) demo that shows how to:
 - Configure database connections from environment variables (with optional environment names)
 - Initialize a SQLAlchemy engine
@@ -9,7 +9,7 @@ This repository is a minimal ETL (Extract–Transform–Load) demo that shows ho
 
 The code is small and intentionally straightforward so you can adapt it to your own projects.
 
-Key components
+## Key components
 - etl/core.py
   - EtlDbConfig: builds a SQLAlchemy connection URI from env vars (PG_*). Supports named environments (e.g., PG_DEV_*).
   - EtlDbSource: creates a SQLAlchemy Engine from the config.
@@ -19,18 +19,18 @@ Key components
 - main.py
   - Wires everything together: loads .env, ensures folders exist, creates an engine, and queries ctl_file_sources.
 
-Requirements
+## Requirements
 - Python 3.12+
 - A PostgreSQL instance you can connect to
 
-Project dependencies (via pyproject.toml)
+## Project dependencies (via pyproject.toml)
 - sqlalchemy>=2.0
 - psycopg>=3 (driver used by SQLAlchemy URI: postgresql+psycopg)
 - python-dotenv (loads .env)
 - alembic (database migrations)
 - pandas (not required for the minimal demo run, but included for convenience)
 
-Quick start
+## Quick start
 1) Clone and enter the repo
    git clone <your-fork-or-origin>
    cd etl-demo
@@ -67,7 +67,7 @@ Quick start
 
 You should see folder creation logs and the result of selecting from ctl_file_sources.
 
-Environment variables and connection URI
+## Environment variables and connection URI
 EtlDbConfig builds a SQLAlchemy URI like:
   TYPE://USER:PASS@HOST:PORT/DB
 Defaults used if not specified in env vars:
@@ -78,13 +78,15 @@ Defaults used if not specified in env vars:
 
 Example .env
 See .env.example for a complete template. Minimal example:
+```
   PG_DB=mydb
   PG_USER=myuser
   PG_PASS=secret
   PG_HOST=localhost
   PG_PORT=5532
+```
 
-Project structure (selected)
+## Project structure (selected)
 - main.py                      Entry point wiring env, folders, and DB call
 - etl/core.py                  Config, engine factory, and folder management
 - etl/cntrl.py                 Simple control-table data access
@@ -92,17 +94,19 @@ Project structure (selected)
 - alembic.ini                  Alembic config
 - dw-demo/docker-compose.yml   Optional helper Compose file (not required)
 
-Alembic notes
+## Alembic notes
 - alembic.ini is configured for this project; ensure your environment variables are set before running migrations.
 - Common commands:
   - alembic upgrade head
   - alembic downgrade -1
   - alembic revision -m "message" --autogenerate
 
-Troubleshooting
+## Troubleshooting
 - Connection errors: Verify PG_* variables and that your database is reachable. Confirm your driver is postgresql+psycopg and psycopg>=3 is installed.
 - Missing table ctl_file_sources: Run alembic upgrade head to apply migrations.
 - Permission issues creating folders: The app creates in, out, logs, tmp, dat, ctl under the working directory. Run from a writable location or adjust EtlEnvironment(sys_root).
 
-License
-This demo is provided as-is for educational purposes.
+## License
+MIT License. See the LICENSE file for full terms.
+
+Copyright (c) 2025 Daniel Haanpaa [Lab0]
