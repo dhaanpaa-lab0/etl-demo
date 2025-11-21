@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.12"
 
 [[package]]
@@ -121,6 +121,7 @@ dependencies = [
     { name = "pymysql" },
     { name = "python-dotenv" },
     { name = "sqlalchemy" },
+    { name = "sqlalchemy-serializer" },
 ]
 
 [package.metadata]
@@ -135,6 +136,7 @@ requires-dist = [
     { name = "pymysql", specifier = ">=1.1.0" },
     { name = "python-dotenv", specifier = ">=1.2.1" },
     { name = "sqlalchemy", specifier = ">=2.0.44" },
+    { name = "sqlalchemy-serializer", specifier = ">=1.4.12" },
 ]
 
 [[package]]
@@ -508,6 +510,15 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/03/51/665617fe4f8c6450f42a6d8d69243f9420f5677395572c2fe9d21b493b7b/sqlalchemy-2.0.44-cp313-cp313-win_amd64.whl", hash = "sha256:c1c80faaee1a6c3428cecf40d16a2365bcf56c424c92c2b6f0f9ad204b899e9e", size = 2127901, upload-time = "2025-10-10T15:03:27.548Z" },
     { url = "https://files.pythonhosted.org/packages/9c/5e/6a29fa884d9fb7ddadf6b69490a9d45fded3b38541713010dad16b77d015/sqlalchemy-2.0.44-py3-none-any.whl", hash = "sha256:19de7ca1246fbef9f9d1bff8f1ab25641569df226364a0e40457dc5457c54b05", size = 1928718, upload-time = "2025-10-10T15:29:45.32Z" },
 ]
+
+[[package]]
+name = "sqlalchemy-serializer"
+version = "1.4.12"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "sqlalchemy" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/86/c9/8fb4469d12306a4bd0ab787fd62dc265adb35a068f5f8f9c5c9f69a9a930/SQLAlchemy-serializer-1.4.12.tar.gz", hash = "sha256:5e1f83fc6d8a4f7618100c1b9a6af949498210756b974527ec3c8c1ec7e1300f", size = 16739, upload-time = "2024-04-01T14:51:51.261Z" }
 
 [[package]]
 name = "types-pytz"

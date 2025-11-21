@@ -15,4 +15,5 @@ dependencies = [
     "pymysql>=1.1.0",
     "python-dotenv>=1.2.1",
     "sqlalchemy>=2.0.44",
+    "sqlalchemy-serializer>=1.4.12",
 ]
