@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "alembic>=1.17.2",
     "black>=25.11.0",
     "pandas>=2.3.3",
     "psycopg>=3.2.12",
